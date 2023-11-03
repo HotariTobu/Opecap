@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Opecap.CursorHighlighterTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Opecap"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <UserControl.DataContext>
+        <local:Setting/>
+    </UserControl.DataContext>
+
+    <local:UniformTabControl TabStripPlacement="Left" SelectedIndex="{Binding CursorHighlighter.Index, Mode=TwoWay}"
+                             SelectionChanged="UniformTabControl_SelectionChanged">
+        <TabItem>
+            <TabItem.Header>
+                <Ellipse Width="50" Height="50">
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.BackgroundColor}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </TabItem.Header>
+            <local:CircleCursorTab DataContext="{Binding}" Margin="5"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <Image Width="50" Height="50" Source="{Binding CursorHighlighter.ImageCursor.CursorImage}"/>
+            </TabItem.Header>
+            <local:ImageCursorTab DataContext="{Binding}" Margin="5"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <Rectangle Width="50" Height="50">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding CursorHighlighter.SpotCursor.BackgroundColor}"/>
+                    </Rectangle.Fill>
+                    <Rectangle.Clip>
+                        <CombinedGeometry GeometryCombineMode="Exclude">
+                            <CombinedGeometry.Geometry1>
+                                <RectangleGeometry Rect="0,0,50,50"/>
+                            </CombinedGeometry.Geometry1>
+                            <CombinedGeometry.Geometry2>
+                                <EllipseGeometry Center="25,25" RadiusX="20" RadiusY="20"/>
+                            </CombinedGeometry.Geometry2>
+                        </CombinedGeometry>
+                    </Rectangle.Clip>
+                </Rectangle>
+            </TabItem.Header>
+            <local:SpotCursorTab DataContext="{Binding}" Margin="5"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <Path Width="50" Height="50" Data="M0,0 C2,0 1,4 3,2" Stroke="{Binding CursorHighlighter.PenCursor.Left.PenBrush}" Stretch="Uniform"/>
+            </TabItem.Header>
+            <local:PenCursorTab DataContext="{Binding}" Margin="5"/>
+        </TabItem>
+    </local:UniformTabControl>
+</UserControl>

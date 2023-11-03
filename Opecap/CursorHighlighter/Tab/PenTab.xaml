@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="Opecap.PenTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Opecap"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <InkCanvas x:Name="IC" HorizontalAlignment="Center" VerticalAlignment="Center" ClipToBounds="True" Background="Transparent" MinWidth="0" MinHeight="0" EditingMode="None"
+                       DefaultDrawingAttributes="{Binding Attributes}"
+                       DefaultDrawingAttributesReplaced="IC_DefaultDrawingAttributesReplaced"/>
+            <local:ColorPicker Grid.Column="1" Color="{Binding PenColor, Mode=TwoWay}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="RadioButton" BasedOn="{StaticResource UniformRadioButton}">
+                    <Setter Property="Width" Value="60"/>
+                    <Setter Property="Height" Value="60"/>
+                </Style>
+                <Style TargetType="Path">
+                    <Setter Property="Stroke" Value="Black"/>
+                    <Setter Property="Stretch" Value="Uniform"/>
+                </Style>
+            </Grid.Resources>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <RadioButton BorderThickness="1,1,0.5,0.5" IsChecked="{Binding PenMode.IsPen, Mode=TwoWay}">
+                    <Path Data="M1,0.5 0,0 0.5,1 Z M2,1 1,2 M7,6 6,7 M1,0.5 2,1 M2,1 7,6 M0.5,1 1,2 M1,2 6,7" Fill="{Binding PenBrush}"/>
+                </RadioButton>
+                <RadioButton Grid.Column="1" BorderThickness="0.5,1,1,0.5" IsChecked="{Binding PenMode.IsSelect, Mode=TwoWay}">
+                    <Path Data="M1,0 C8,0 0,6 0,1" Stroke="{Binding PenBrush}" StrokeDashArray="3" StrokeDashCap="Round"/>
+                </RadioButton>
+                <RadioButton Grid.Row="1" BorderThickness="1,0.5,0.5,1" IsChecked="{Binding PenMode.IsPointErase, Mode=TwoWay}">
+                    <Path Data="M1,0 A0.5,0.5 0 0 0 0,1 Z M2.5,1.5 1.5,2.5 M1,0 2.5,1.5 M0,1 1.5,2.5" Fill="{Binding PenBrush}"/>
+                </RadioButton>
+                <RadioButton Grid.Column="1" Grid.Row="1" BorderThickness="0.5,0.5,1,1" IsChecked="{Binding PenMode.IsStrokeErase, Mode=TwoWay}">
+                    <Path Data="M3,1 0,2 1,3 Z M6,4 4,6 M3,1 6,4 M1,3 4,6" Fill="{Binding PenBrush}"/>
+                </RadioButton>
+            </Grid>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <RadioButton BorderThickness="1,1,1,0.5" IsChecked="{Binding PenTip.IsEllipse, Mode=TwoWay}">
+                    <Ellipse Width="40" Height="40" Fill="{Binding PenBrush}"/>
+                </RadioButton>
+                <RadioButton BorderThickness="1,0.5,1,1" IsChecked="{Binding PenTip.IsRectangle, Mode=TwoWay}">
+                    <Rectangle Width="40" Height="40" Fill="{Binding PenBrush}"/>
+                </RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <Slider Minimum="1" Maximum="100" Margin="10" Value="{Binding Width, Mode=TwoWay}"/>
+                <Slider Minimum="1" Maximum="100" Margin="10" Value="{Binding Height, Mode=TwoWay}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="ToggleButton" BasedOn="{StaticResource UniformToggleButton}">
+                    <Setter Property="Width" Value="60"/>
+                    <Setter Property="Height" Value="60"/>
+                </Style>
+                <Style x:Key="KeyMark" TargetType="Path">
+                    <Setter Property="Data" Value="M0,-1 M0,0 L1.5,1 H8.5 L10,0 M0,10 L1.5,8 H8.5 L10,10 M1.5,1 V8 M8.5,1 V8"/>
+                    <Setter Property="Stroke" Value="Black"/>
+                    <Setter Property="Stretch" Value="Uniform"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <ToggleButton IsChecked="{Binding IsAlt, Mode=TwoWay}">
+                <Grid>
+                    <Path Style="{StaticResource KeyMark}"/>
+                    <TextBlock Text="Alt"/>
+                </Grid>
+            </ToggleButton>
+            <ToggleButton Grid.Column="1" IsChecked="{Binding IsCtrl, Mode=TwoWay}">
+                <Grid>
+                    <Path Style="{StaticResource KeyMark}"/>
+                    <TextBlock Text="Ctrl"/>
+                </Grid>
+            </ToggleButton>
+            <ToggleButton Grid.Column="2" IsChecked="{Binding IsShift, Mode=TwoWay}">
+                <Grid>
+                    <Path Style="{StaticResource KeyMark}"/>
+                    <TextBlock Text="Shift"/>
+                </Grid>
+            </ToggleButton>
+            <ToggleButton Grid.Column="3" IsChecked="{Binding IsWin, Mode=TwoWay}">
+                <Grid>
+                    <Path Style="{StaticResource KeyMark}"/>
+                    <Path Fill="Black" Data="M0,2 L4.5,1.2 V5 H0 Z M5,1 L11,0 V5 H5 Z M0,9 L4.5,9.8 V5.5 H0 M5,10 L11,11 V5.5 H5 Z" Stretch="Uniform" Width="20"/>
+                </Grid>
+            </ToggleButton>
+        </Grid>
+    </Grid>
+</UserControl>

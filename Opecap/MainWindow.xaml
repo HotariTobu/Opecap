@@ -1,0 +1,43 @@
+﻿<Window x:Class="Opecap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Opecap"
+        xmlns:shared="clr-namespace:SharedWPF"
+        mc:Ignorable="d"
+        Title="Opecap" WindowStyle="ToolWindow"
+        Left="{Binding MainWindow.Left, Mode=TwoWay}" Top="{Binding MainWindow.Top, Mode=TwoWay}" Width="{Binding MainWindow.Width, Mode=TwoWay}" Height="{Binding MainWindow.Height, Mode=TwoWay}"
+        ContentRendered="Window_ContentRendered"
+        StateChanged="Window_StateChanged"
+        Closed="Window_Closed">
+    <Window.DataContext>
+        <local:Setting/>
+    </Window.DataContext>
+
+    <local:UniformTabControl TabStripPlacement="Top">
+        <local:UniformTabControl.Resources>
+            <Style x:Key="HeaderMark" TargetType="Path">
+                <Setter Property="Width" Value="40"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Stroke" Value="Black"/>
+                <Setter Property="Stretch" Value="Uniform"/>
+            </Style>
+        </local:UniformTabControl.Resources>
+        <TabItem>
+            <TabItem.Header>
+                <Path Data="M0,0 V16 L4,12 7,18 9,17 6,11 11,11 Z" Fill="White" Style="{StaticResource HeaderMark}"/>
+            </TabItem.Header>
+            <local:CursorHighlighterTab x:Name="Tab0" DataContext="{Binding}" Margin="5"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <Grid>
+                    <Path Data="M0,-2 M0,0 L1.5,1 H8.5 L10,0 M0,10 L1.5,8 H8.5 L10,10 M1.5,1 V8 M8.5,1 V8" Style="{StaticResource HeaderMark}"/>
+                    <TextBlock Text="A" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem.Header>
+            <local:KeyStrokerTab x:Name="Tab1" DataContext="{Binding}" Margin="5"/>
+        </TabItem>
+    </local:UniformTabControl>
+</Window>

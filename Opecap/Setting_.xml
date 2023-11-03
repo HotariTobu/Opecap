@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Opecap Count="3">
+  <CursorHighlighter Count="4">
+    <CircleCursor Count="0">
+      <BackgroundColor Type="Color">Color.FromArgb(128, 255, 255, 0)</BackgroundColor>
+      <LeftBrushColor Type="Color">Color.FromArgb(255, 255, 0, 0)</LeftBrushColor>
+      <MiddleBrushColor Type="Color">Color.FromArgb(255, 0, 255, 0)</MiddleBrushColor>
+      <RightBrushColor Type="Color">Color.FromArgb(255, 0, 0, 255)</RightBrushColor>
+      <Radius Type="double">50</Radius>
+      <LeftAngle Type="double">239.27416538962</LeftAngle>
+      <RightAngle Type="double">300.72583456764</RightAngle>
+    </CircleCursor>
+    <ImageCursor Count="0">
+      <ImagePath Type="string">"Pen.png"</ImagePath>
+      <RadiusX Type="double">50</RadiusX>
+      <RadiusY Type="double">50</RadiusY>
+      <OffsetX Type="double">-50</OffsetX>
+      <OffsetY Type="double">-50</OffsetY>
+      <Angle Type="double">0</Angle>
+      <IsFill Type="bool">true</IsFill>
+      <IsNotFillNorUniform Type="bool">false</IsNotFillNorUniform>
+      <IsUniform Type="bool">false</IsUniform>
+      <IsUniformToFill Type="bool">false</IsUniformToFill>
+    </ImageCursor>
+    <SpotCursor Count="0">
+      <BackgroundColor Type="Color">Color.FromArgb(100, 0, 0, 0)</BackgroundColor>
+      <Radius Type="double">50</Radius>
+    </SpotCursor>
+    <PenCursor Count="5">
+      <Left Count="2">
+        <PenMode Count="0">
+          <IsPen Type="bool">true</IsPen>
+          <IsSelect Type="bool">false</IsSelect>
+          <IsPointErase Type="bool">false</IsPointErase>
+          <IsStrokeErase Type="bool">false</IsStrokeErase>
+        </PenMode>
+        <PenTip Count="0">
+          <IsEllipse Type="bool">true</IsEllipse>
+          <IsRectangle Type="bool">false</IsRectangle>
+        </PenTip>
+        <PenColor Type="Color">Color.FromArgb(255, 255, 0, 0)</PenColor>
+        <Width Type="double">3</Width>
+        <Height Type="double">3</Height>
+        <IsAlt Type="bool">true</IsAlt>
+        <IsCtrl Type="bool">false</IsCtrl>
+        <IsShift Type="bool">false</IsShift>
+        <IsWin Type="bool">false</IsWin>
+      </Left>
+      <Middle Count="2">
+        <PenMode Count="0">
+          <IsPen Type="bool">false</IsPen>
+          <IsSelect Type="bool">true</IsSelect>
+          <IsPointErase Type="bool">false</IsPointErase>
+          <IsStrokeErase Type="bool">false</IsStrokeErase>
+        </PenMode>
+        <PenTip Count="0">
+          <IsEllipse Type="bool">true</IsEllipse>
+          <IsRectangle Type="bool">false</IsRectangle>
+        </PenTip>
+        <PenColor Type="Color">Color.FromArgb(255, 0, 255, 0)</PenColor>
+        <Width Type="double">3</Width>
+        <Height Type="double">3</Height>
+        <IsAlt Type="bool">true</IsAlt>
+        <IsCtrl Type="bool">false</IsCtrl>
+        <IsShift Type="bool">false</IsShift>
+        <IsWin Type="bool">false</IsWin>
+      </Middle>
+      <Right Count="2">
+        <PenMode Count="0">
+          <IsPen Type="bool">false</IsPen>
+          <IsSelect Type="bool">false</IsSelect>
+          <IsPointErase Type="bool">true</IsPointErase>
+          <IsStrokeErase Type="bool">false</IsStrokeErase>
+        </PenMode>
+        <PenTip Count="0">
+          <IsEllipse Type="bool">true</IsEllipse>
+          <IsRectangle Type="bool">false</IsRectangle>
+        </PenTip>
+        <PenColor Type="Color">Color.FromArgb(255, 0, 0, 255)</PenColor>
+        <Width Type="double">50</Width>
+        <Height Type="double">50</Height>
+        <IsAlt Type="bool">true</IsAlt>
+        <IsCtrl Type="bool">false</IsCtrl>
+        <IsShift Type="bool">false</IsShift>
+        <IsWin Type="bool">false</IsWin>
+      </Right>
+      <Stylus Count="2">
+        <PenMode Count="0">
+          <IsPen Type="bool">true</IsPen>
+          <IsSelect Type="bool">false</IsSelect>
+          <IsPointErase Type="bool">false</IsPointErase>
+          <IsStrokeErase Type="bool">false</IsStrokeErase>
+        </PenMode>
+        <PenTip Count="0">
+          <IsEllipse Type="bool">true</IsEllipse>
+          <IsRectangle Type="bool">false</IsRectangle>
+        </PenTip>
+        <PenColor Type="Color">Color.FromArgb(255, 255, 0, 0)</PenColor>
+        <Width Type="double">3</Width>
+        <Height Type="double">3</Height>
+        <IsAlt Type="bool">true</IsAlt>
+        <IsCtrl Type="bool">false</IsCtrl>
+        <IsShift Type="bool">false</IsShift>
+        <IsWin Type="bool">false</IsWin>
+      </Stylus>
+      <InvertedStylus Count="2">
+        <PenMode Count="0">
+          <IsPen Type="bool">false</IsPen>
+          <IsSelect Type="bool">false</IsSelect>
+          <IsPointErase Type="bool">true</IsPointErase>
+          <IsStrokeErase Type="bool">false</IsStrokeErase>
+        </PenMode>
+        <PenTip Count="0">
+          <IsEllipse Type="bool">true</IsEllipse>
+          <IsRectangle Type="bool">false</IsRectangle>
+        </PenTip>
+        <PenColor Type="Color">Color.FromArgb(255, 0, 0, 255)</PenColor>
+        <Width Type="double">50</Width>
+        <Height Type="double">50</Height>
+        <IsAlt Type="bool">true</IsAlt>
+        <IsCtrl Type="bool">false</IsCtrl>
+        <IsShift Type="bool">false</IsShift>
+        <IsWin Type="bool">false</IsWin>
+      </InvertedStylus>
+      <Index Type="int">0</Index>
+    </PenCursor>
+    <Index Type="int">0</Index>
+  </CursorHighlighter>
+  <KeyStroker Count="0">
+    <ForegroundColor Type="Color">Color.FromArgb(255, 255, 255, 255)</ForegroundColor>
+    <BackgroundColor Type="Color">Color.FromArgb(128, 0, 0, 0)</BackgroundColor>
+    <DownListIsVisible Type="bool">true</DownListIsVisible>
+    <Interval Type="double">10</Interval>
+    <FontSize Type="double">20</FontSize>
+    <FontFamily Type="string">"Yu Gothic UI"</FontFamily>
+    <FontStyle Type="int">0</FontStyle>
+    <Direction Type="double">90</Direction>
+    <Left Type="double">50</Left>
+    <Top Type="double">50</Top>
+    <Width Type="double">350</Width>
+    <Height Type="double">150</Height>
+  </KeyStroker>
+  <MainWindow Count="0">
+    <Left Type="double">100</Left>
+    <Top Type="double">200</Top>
+    <Width Type="double">650</Width>
+    <Height Type="double">600</Height>
+  </MainWindow>
+</Opecap>

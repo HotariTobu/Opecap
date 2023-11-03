@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Opecap.CircleCursorCore"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Opecap"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local:BooleanToSweepDirection x:Key="BooleanToSweepDirection"/>
+        <Style TargetType="Path">
+            <Setter Property="Stretch" Value="Uniform"/>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <local:Setting/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Path Visibility="{Binding CursorHighlighter.CircleCursor.LeftDown,Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+            <Path.Fill>
+                <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.LeftBrushColor, Mode=OneWay}"/>
+            </Path.Fill>
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="-1,-1"/>
+                    <PathFigure StartPoint="0,1">
+                        <ArcSegment Size="1,1" IsLargeArc="{Binding CursorHighlighter.CircleCursor.LeftIsLarge, Mode=OneWay}" SweepDirection="Clockwise" Point="{Binding CursorHighlighter.CircleCursor.LeftPoint, Mode=OneWay}"/>
+                    </PathFigure>
+                    <PathFigure StartPoint="1,1"/>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Visibility="{Binding CursorHighlighter.CircleCursor.MiddleDown,Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+            <Path.Fill>
+                <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.MiddleBrushColor, Mode=OneWay}"/>
+            </Path.Fill>
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="-1,-1"/>
+                    <PathFigure StartPoint="0,1">
+                        <LineSegment Point="{Binding CursorHighlighter.CircleCursor.RightPoint, Mode=OneWay}"/>
+                        <ArcSegment Size="1,1" IsLargeArc="{Binding CursorHighlighter.CircleCursor.MiddleIsLarge, Mode=OneWay}" SweepDirection="{Binding CursorHighlighter.CircleCursor.MiddleIsClockwise,Converter={StaticResource BooleanToSweepDirection}, Mode=OneWay}" Point="{Binding CursorHighlighter.CircleCursor.LeftPoint, Mode=OneWay}"/>
+                    </PathFigure>
+                    <PathFigure StartPoint="1,1"/>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Visibility="{Binding CursorHighlighter.CircleCursor.RightDown,Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+            <Path.Fill>
+                <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.RightBrushColor, Mode=OneWay}"/>
+            </Path.Fill>
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="-1,-1"/>
+                    <PathFigure StartPoint="0,1">
+                        <ArcSegment Size="1,1" IsLargeArc="{Binding CursorHighlighter.CircleCursor.RightIsLarge, Mode=OneWay}" Point="{Binding CursorHighlighter.CircleCursor.RightPoint, Mode=OneWay}"/>
+                    </PathFigure>
+                    <PathFigure StartPoint="1,1"/>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Visibility="{Binding CursorHighlighter.CircleCursor.WheelRotate,Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+              Width="40" Height="50" StrokeThickness="5" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Stretch="Uniform" Data="M 5,9 V 1 M 2,4 L 5,1 L 8,4"
+              RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform/>
+                    <ScaleTransform ScaleY="{Binding CursorHighlighter.CircleCursor.WheelSign, Mode=OneWay}"/>
+                </TransformGroup>
+            </Path.RenderTransform>
+            <Path.Stroke>
+                <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.MiddleBrushColor, Mode=OneWay}"/>
+            </Path.Stroke>
+            <Path.Style>
+                <Style TargetType="Path">
+                    <Style.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[0].Y">
+                                            <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="20"/>
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.2" Value="-20"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="00:00:00.2" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
+        </Path>
+    </Grid>
+</UserControl>

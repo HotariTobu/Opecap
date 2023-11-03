@@ -1,0 +1,100 @@
+﻿<Window x:Class="Opecap.KeyStrokerHolder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Opecap"
+        xmlns:shared="clr-namespace:SharedWPF"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" Topmost="True" ShowInTaskbar="False"
+        Left="{Binding KeyStroker.Left, Mode=TwoWay}" Top="{Binding KeyStroker.Top, Mode=TwoWay}" Width="{Binding KeyStroker.Width, Mode=TwoWay}" Height="{Binding KeyStroker.Height, Mode=TwoWay}"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp"
+        MouseMove="Window_MouseMove">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="50" ResizeBorderThickness="10"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <shared:DoubleMixConverter x:Key="DoubleMixConverter"/>
+        <shared:DoubleAddConverter x:Key="DoubleAddConverter"/>
+        <shared:MultiDoubleToPointConverter x:Key="MultiDoubleToPointConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:Setting/>
+    </Window.DataContext>
+    <Window.Clip>
+        <PathGeometry>
+            <PathFigure>
+                <LineSegment>
+                    <LineSegment.Point>
+                        <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay"/>
+                            <Binding Path="KeyStroker.Zero"/>
+                        </MultiBinding>
+                    </LineSegment.Point>
+                </LineSegment>
+                <LineSegment>
+                    <LineSegment.Point>
+                        <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay"/>
+                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay"/>
+                        </MultiBinding>
+                    </LineSegment.Point>
+                </LineSegment>
+                <LineSegment>
+                    <LineSegment.Point>
+                        <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                            <Binding Path="KeyStroker.Zero"/>
+                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay"/>
+                        </MultiBinding>
+                    </LineSegment.Point>
+                </LineSegment>
+                <LineSegment Point="0,0"/>
+                <LineSegment Point="50,50"/>
+                <LineSegment>
+                    <LineSegment.Point>
+                        <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay" Converter="{StaticResource DoubleAddConverter}" ConverterParameter="0/-50"/>
+                            <Binding Path="KeyStroker.Fifty"/>
+                        </MultiBinding>
+                    </LineSegment.Point>
+                </LineSegment>
+                <LineSegment>
+                    <LineSegment.Point>
+                        <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay" Converter="{StaticResource DoubleAddConverter}" ConverterParameter="0/-50"/>
+                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay" Converter="{StaticResource DoubleAddConverter}" ConverterParameter="0/-50"/>
+                        </MultiBinding>
+                    </LineSegment.Point>
+                </LineSegment>
+                <LineSegment>
+                    <LineSegment.Point>
+                        <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                            <Binding Path="KeyStroker.Fifty"/>
+                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Mode="OneWay" Converter="{StaticResource DoubleAddConverter}" ConverterParameter="0/-50"/>
+                        </MultiBinding>
+                    </LineSegment.Point>
+                </LineSegment>
+                <LineSegment Point="50,50"/>
+            </PathFigure>
+        </PathGeometry>
+    </Window.Clip>
+    <Rectangle Stroke="Orange" StrokeThickness="50" StrokeDashArray="4" StrokeDashCap="Round">
+        <Rectangle.Style>
+            <Style TargetType="Rectangle">
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard Name="Story">
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Duration="00:00:04" To="8" Storyboard.TargetProperty="StrokeDashOffset"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Unloaded">
+                        <StopStoryboard BeginStoryboardName="Story"/>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Rectangle.Style>
+    </Rectangle>
+</Window>

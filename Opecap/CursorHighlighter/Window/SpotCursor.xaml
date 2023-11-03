@@ -1,0 +1,27 @@
+﻿<Window x:Class="Opecap.SpotCursor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Opecap"
+        mc:Ignorable="d" Left="0" Top="0" WindowState="Maximized"
+        ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Topmost="True" ShowInTaskbar="False"
+        IsVisibleChanged="Window_IsVisibleChanged">
+    <Window.DataContext>
+        <local:Setting/>
+    </Window.DataContext>
+
+    <Window.Background>
+        <SolidColorBrush Color="{Binding CursorHighlighter.SpotCursor.BackgroundColor}"/>
+    </Window.Background>
+    <Window.Clip>
+        <CombinedGeometry GeometryCombineMode="Exclude">
+            <CombinedGeometry.Geometry1>
+                <RectangleGeometry Rect="{Binding CursorHighlighter.SpotCursor.ScreenRect}"/>
+            </CombinedGeometry.Geometry1>
+            <CombinedGeometry.Geometry2>
+                <EllipseGeometry RadiusX="{Binding CursorHighlighter.SpotCursor.Radius, Mode=TwoWay}" RadiusY="{Binding CursorHighlighter.SpotCursor.Radius, Mode=TwoWay}" Center="{Binding CursorHighlighter.SpotCursor.Pos}"/>
+            </CombinedGeometry.Geometry2>
+        </CombinedGeometry>
+    </Window.Clip>
+</Window>

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <Copyright>Copyright © 2021 hotari13port@gmail.com</Copyright>
+    <Authors>Hotari</Authors>
+    <Company>Hotari</Company>
+    <Version>2.2</Version>
+    <AssemblyVersion>2.2</AssemblyVersion>
+    <FileVersion>2.2</FileVersion>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <Import Project="..\..\SharedWPF\SharedWPF\SharedWPF.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <Compile Remove="CursorHighlighter\Window\ZoomCursor.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="CursorHighlighter\Window\ZoomCursor.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="CursorHighlighter\Window\ZoomCursor.xaml" />
+    <None Include="CursorHighlighter\Window\ZoomCursor.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Pen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

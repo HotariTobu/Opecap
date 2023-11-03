@@ -1,0 +1,35 @@
+﻿<Window x:Class="Opecap.CircleCursor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Opecap"
+        xmlns:shared="clr-namespace:SharedWPF"
+        mc:Ignorable="d"
+        d:Width="200" d:Height="200"
+        ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Topmost="True" ShowInTaskbar="False"
+        Width="{Binding CursorHighlighter.CircleCursor.Width,Mode=TwoWay}"
+        Height="{Binding CursorHighlighter.CircleCursor.Height,Mode=TwoWay}"
+        IsVisibleChanged="Window_IsVisibleChanged">
+    <Window.Resources>
+        <shared:MultiDoubleToPointConverter x:Key="MultiDoubleToPointConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:Setting/>
+    </Window.DataContext>
+
+    <Window.Background>
+        <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.BackgroundColor}"/>
+    </Window.Background>
+    <Window.Clip>
+        <EllipseGeometry RadiusX="{Binding CursorHighlighter.CircleCursor.Radius, Mode=TwoWay}" RadiusY="{Binding CursorHighlighter.CircleCursor.Radius, Mode=TwoWay}">
+            <EllipseGeometry.Center>
+                <MultiBinding Converter="{StaticResource MultiDoubleToPointConverter}">
+                    <Binding Path="CursorHighlighter.CircleCursor.Radius" Mode="TwoWay"/>
+                    <Binding Path="CursorHighlighter.CircleCursor.Radius" Mode="TwoWay"/>
+                </MultiBinding>
+            </EllipseGeometry.Center>
+        </EllipseGeometry>
+    </Window.Clip>
+    <local:CircleCursorCore DataContext="{Binding}"/>
+</Window>

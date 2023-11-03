@@ -1,0 +1,54 @@
+﻿<Window x:Class="HookTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HookTest"
+        mc:Ignorable="d"
+        Title="HookTest" Height="450" Width="800"
+        Closed="Window_Closed"
+        
+        MouseDoubleClick="Window_MouseDoubleClick"
+        MouseDown="Window_MouseDown"
+        MouseEnter="Window_MouseEnter"
+        MouseLeave="Window_MouseLeave"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp"
+        MouseMove="Window_MouseMove"
+        MouseRightButtonDown="Window_MouseRightButtonDown"
+        MouseRightButtonUp="Window_MouseRightButtonUp"
+        MouseUp="Window_MouseUp"
+        MouseWheel="Window_MouseWheel"
+        
+        TouchDown="Window_TouchDown"
+        TouchEnter="Window_TouchEnter"
+        TouchLeave="Window_TouchLeave"
+        TouchMove="Window_TouchMove"
+        TouchUp="Window_TouchUp"
+        
+        StylusButtonDown="Window_StylusButtonDown"
+        StylusButtonUp="Window_StylusButtonUp"
+        StylusDown="Window_StylusDown"
+        StylusEnter="Window_StylusEnter"
+        StylusInAirMove="Window_StylusInAirMove"
+        StylusInRange="Window_StylusInRange"
+        StylusLeave="Window_StylusLeave"
+        StylusMove="Window_StylusMove"
+        StylusOutOfRange="Window_StylusOutOfRange"
+        StylusSystemGesture="Window_StylusSystemGesture"
+        StylusUp="Window_StylusUp"
+        >
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <DataGrid x:Name="DG" ItemsSource="{Binding Items, Mode=OneWay}" AutoGenerateColumns="False" CanUserDeleteRows="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Index" Width="50" Binding="{Binding Index}"/>
+            <DataGridTextColumn Header="Timestamp" Width="100" Binding="{Binding Timestamp}"/>
+            <DataGridTextColumn Header="MouseHook" Width="150" Binding="{Binding MouseHookEvent}"/>
+            <DataGridTextColumn Header="MouseCapture" Width="150" Binding="{Binding MouseCaptureEvent}"/>
+            <DataGridTextColumn Header="TouchCapture" Width="150" Binding="{Binding TouchCaptureEvent}"/>
+            <DataGridTextColumn Header="StylusCapture" Width="150" Binding="{Binding StylusCaptureEvent}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</Window>

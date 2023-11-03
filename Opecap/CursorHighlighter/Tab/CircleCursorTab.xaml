@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Opecap.CircleCursorTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Opecap"
+             xmlns:shared="clr-namespace:SharedWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400"
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+    <UserControl.Resources>
+        <shared:DoubleMixConverter x:Key="DoubleMixConverter"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <local:Setting/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <local:ColorPicker Color="{Binding CursorHighlighter.CircleCursor.BackgroundColor, Mode=TwoWay}"/>
+        <local:ColorPicker Grid.Row="2" Color="{Binding CursorHighlighter.CircleCursor.LeftBrushColor, Mode=TwoWay}"/>
+        <local:ColorPicker Grid.Column="2" Color="{Binding CursorHighlighter.CircleCursor.MiddleBrushColor, Mode=TwoWay}"/>
+        <local:ColorPicker Grid.Row="2" Grid.Column="2" Color="{Binding CursorHighlighter.CircleCursor.RightBrushColor, Mode=TwoWay}"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Width="{Binding CursorHighlighter.CircleCursor.Width}" Height="{Binding CursorHighlighter.CircleCursor.Height}">
+                <Ellipse>
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="{Binding CursorHighlighter.CircleCursor.BackgroundColor}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <local:CircleCursorCore DataContext="{Binding}"/>
+            </Grid>
+            <local:AngleGrip Radius="{Binding CursorHighlighter.CircleCursor.Radius, Mode=OneWay}" Background="Cyan" Angle="{Binding CursorHighlighter.CircleCursor.RightAngle, Mode=TwoWay}"/>
+            <local:AngleGrip Radius="{Binding CursorHighlighter.CircleCursor.Radius, Mode=OneWay}" Background="Yellow" Angle="{Binding CursorHighlighter.CircleCursor.LeftAngle, Mode=TwoWay}"/>
+            <local:LengthGrip MaxLength="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Mode=OneWay, Converter={StaticResource DoubleMixConverter}, ConverterParameter=0.5}"
+                                  MinLength="20" Background="Magenta" RenderTransformOrigin="0.5,0.5" Length="{Binding CursorHighlighter.CircleCursor.Radius, Mode=TwoWay}">
+                <local:LengthGrip.RenderTransform>
+                    <RotateTransform Angle="90"/>
+                </local:LengthGrip.RenderTransform>
+            </local:LengthGrip>
+        </Grid>
+    </Grid>
+</UserControl>
