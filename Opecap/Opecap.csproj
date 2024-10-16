@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -15,7 +15,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <Import Project="..\..\SharedWPF\SharedWPF\SharedWPF.projitems" Label="Shared" />
+  <Import Project="..\..\SharedWPF\src\SharedWPF.projitems" Label="Shared" />
 
   <ItemGroup>
     <Compile Remove="CursorHighlighter\Window\ZoomCursor.xaml.cs" />
